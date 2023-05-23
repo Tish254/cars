@@ -14,4 +14,16 @@ class Car extends Model
 
     public $timestamps  = true;
 
+    protected $fillable =[
+        'name', 'founded', 'description'
+    ];
+
+    protected $hidden = [
+        'updated_at'
+    ];
+
+    protected $visible = [
+        'name', 'founded', 'description', 'created_at'
+    ];
+
 }
