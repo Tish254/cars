@@ -14,16 +14,26 @@ class Car extends Model
 
     public $timestamps  = true;
 
-    protected $fillable =[
+    protected $fillable = [
         'name', 'founded', 'description'
     ];
 
-    protected $hidden = [
-        'updated_at'
-    ];
+    public function carModels()
+    {
+        return $this->hasMany(CarModel::class);
+    }
 
-    protected $visible = [
-        'name', 'founded', 'description', 'created_at'
-    ];
+    public function headquarter()
+    {
+        return $this->hasOne(Headquarter::class);
+    }
 
+    public function engines()
+    {
+        return $this->hasManyThrough(Engine::class, CarModel::class
+
+        , 'car_id', // Foreign key on CarModel table
+        'model_id' // FK on Engine table
+    );
+    }
 }

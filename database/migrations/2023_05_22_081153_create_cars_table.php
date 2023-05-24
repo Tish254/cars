@@ -23,6 +23,7 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('car_id');
             $table->string('model_name');
+            $table->timestamps();
             $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
         });
     }

@@ -18,7 +18,7 @@ class CarsController extends Controller
             'cars' => $cars
         ]);
     }
- 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -54,7 +54,8 @@ class CarsController extends Controller
      */
     public function show(string $id)
     {
-        //
+         $car = Car::find($id);
+         return view('cars.show')->with('car', $car);
     }
 
     /**
