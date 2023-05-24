@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
-use Illuminate\Http\Request;
-
+use App\Models\Product;
+use App\Http\Requests\CreateValidationRequest;
 class CarsController extends Controller
 {
     /**
@@ -30,13 +30,10 @@ class CarsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateValidationRequest $request)
     {
-        // $car = new Car;
-        // $car->name = $request->input('name');
-        // $car->founded = $request->input('founded');
-        // $car->description = $request->input('description');
-        // $car->save();
+
+        $request->validated();
 
         $car = Car::create(
             [
@@ -55,6 +52,8 @@ class CarsController extends Controller
     public function show(string $id)
     {
          $car = Car::find($id);
+         $products = Product::find($id);
+
          return view('cars.show')->with('car', $car);
     }
 
@@ -70,9 +69,10 @@ class CarsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CreateValidationRequest $request, string $id)
     {
 
+        $request->validated();
         $car = Car::where('id', $id)
             ->update(
                 [

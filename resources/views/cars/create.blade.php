@@ -17,7 +17,7 @@
                     type="file"
                     class="block shadow-5xl mb-10 p-2 w-80 italic placeholder-gray-400"
                     name="image"
-                    placeholder="Upload image...">
+                    >
 
                 <input
                     type="text"
@@ -43,4 +43,13 @@
             </div>
         </form>
     </div>
+    @if ($errors->any())
+        <div class="w-4/8 m-auto text-center">
+            @foreach ($errors->all() as $error )
+                <li class="text-red-500 list-none">
+                    {{ $error }}
+                </li>
+            @endforeach
+        </div>
+    @endif
 @endsection

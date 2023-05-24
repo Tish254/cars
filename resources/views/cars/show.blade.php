@@ -46,7 +46,7 @@
                                 </td>
 
                                 <td class="border-4 border-gray-500">
-                                    {{-- {{ date('d-m-Y', strtotime($car->productionDate->created_at)) }} --}}
+                                    {{ date('d-m-Y', strtotime($car->productionDate->created_at)) }}
                                 </td>
                             </tr>
                         @empty
@@ -58,13 +58,13 @@
 
                     <p class="text-left">
                         Product types:
-                        {{-- @forelse ($car->products as $product)
+                        @forelse ($car->products as $product)
                             {{ $product->name }}
                         @empty
                             <p>
                                 No car product description
                             </p>
-                        @endforelse --}}
+                        @endforelse
                     </p>
                     <hr class="mt-4 mb-8">
                 </div>
