@@ -6,33 +6,47 @@
                 Cars
             </h1>
         </div>
-        <div class="pt-10">
-            <a
-                href="cars/create"
-                class="border-b-2 pb-2 border-dotted italic text-gray-500">
-                Add a new car &rarr;
-            </a>
-        </div>
+        @if (Auth::user())
+            <div class="pt-10">
+                <a
+                    href="cars/create"
+                    class="border-b-2 pb-2 border-dotted italic text-gray-500">
+                    Add a new car &rarr;
+                </a>
+            </div>
+            @else
+                <p class="py-12 italic">
+                    Please login to add a new car.
+                </p>
+        @endif
+
         <div class="w-5/6 py-10">
             @foreach ($cars as $car)
                 <div class="m-auto">
-                    <div class="float-right">
-                        <a
-                            class="border-b-2 pb-2 border-dotted italic text-green-500"
-                            href="cars/{{ $car->id }}/edit">
-                            Edit &rarr;
-                        </a>
+                    @if (isset(Auth::user()->id) && Auth::user()->id == $car->user_id)
+                        <div class="float-right">
+                            <a
+                                class="border-b-2 pb-2 border-dotted italic text-green-500"
+                                href="cars/{{ $car->id }}/edit">
+                                Edit &rarr;
+                            </a>
 
-                        <form action="/cars/{{ $car->id }}" class="pt-3" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button
-                                type="submit"
-                                class="border-b-2 pb-2 border-dotted italic text-red-500">
-                                    Delete &rarr;
-                            </button>
-                        </form>
-                    </div>
+                            <form action="/cars/{{ $car->id }}" class="pt-3" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button
+                                    type="submit"
+                                    class="border-b-2 pb-2 border-dotted italic text-red-500">
+                                        Delete &rarr;
+                                </button>
+                            </form>
+                        </div>
+                    @endif
+
+                    <img
+                        src="{{ asset('images/'. $car->image_path) }}"
+                        class="w-40 mb-8 shadow-xl"
+                    />
                     <span  class="uppercase text-blue-500 font-bold text-xs italic">
                         Founded: {{ $car->founded }}
                     </span>

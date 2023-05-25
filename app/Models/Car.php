@@ -15,7 +15,7 @@ class Car extends Model
     public $timestamps  = true;
 
     protected $fillable = [
-        'name', 'founded', 'description', 'image_path'
+        'name', 'founded', 'description', 'image_path', 'user_id', 'user_id'
     ];
 
     public function carModels()
