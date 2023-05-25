@@ -3,12 +3,13 @@
 @section('content')
     <div class="m-auto w-4/5 py-24">
         <div class="text-center">
+            <img src="{{ asset('images/' . $car->image_path) }}" alt="" class="w-8/12 mb-8 shadow-xl mx-auto">
             <h1 class="text-5xl uppercase bold">
                 {{ $car->name }}
             </h1>
         </div>
 
-        <div class="py-10 text-center">
+        <div class="py-10 text-center mx-auto">
                 <div class="m-auto">
                     <span class="uppercase text-blue-500 font-bold text-xs italic">
                         Founded: {{ $car->founded }}
@@ -18,7 +19,7 @@
                         {{ $car->description }}
                     </p>
 
-                    <table class="table-auto">
+                    <table class="table-auto mx-auto">
                         <tr class="bg-blue-100">
                             <th class="w-1/4 border-4 border-gray-500">
                                 Model
@@ -56,7 +57,7 @@
                         @endforelse
                     </table>
 
-                    <p class="text-left">
+                    <p class=" text-center">
                         Product types:
                         @forelse ($car->products as $product)
                             {{ $product->name }}
